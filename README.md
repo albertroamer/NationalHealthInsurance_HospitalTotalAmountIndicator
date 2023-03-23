@@ -1,0 +1,1 @@
+# NationalHealthInsurance_HospitalTotalAmountIndicator
