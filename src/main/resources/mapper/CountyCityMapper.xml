@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="de.gov.dao.CountyCityDAO">
+
+	<select id="selectCounty" resultMap="CountyList">
+		select id,county_name from county_group; 
+	</select>
+	<resultMap id="CountyList" type="de.gov.vo.CountyVO">
+		<id column="id" property="countyId" />
+		<result column="county_name" property="countyName" />
+	</resultMap>
+	
+	<!--  public List<CityVO> displayCity(Long id); -->
+	<select id="selectCity" resultMap="CityList">
+		select * from area_group WHERE county_id = #{id};
+	</select>
+	<resultMap id="CityList" type="de.gov.vo.CityVO">
+		<id column="id" property="areaId" />
+		<result column="area_name" property="areaName" />
+		<result column="county_id" property="countyForeignKey"/>
+	</resultMap>
+	 
+</mapper>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="de.gov.dao.HospitalDataImplDAO">
+
+	<!-- public int insert(HospitalData hospitalData); -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO hospital_all
+		(hospital_name,county_city,area_id,hospital_code_id,appointed_id)
+		VALUES(
+		#{hospitalName},#{countyCity},#{areaId},#{hospitalCodeId},#{appointedId}
+		)
+	</insert>
+	
+	<!-- List<HospitalAllVO> selectHospitalName(String hospitalName); -->
+  	 <select id="selectHospitalName" resultMap="NameList">
+        SELECT id,hospital_name FROM hospital_all WHERE TRIM(hospital_name) = #{hospitalName} and TRIM(county_city) = #{countyCity}
+     </select>
+    
+    
+      <resultMap id="NameList" type="de.gov.vo.HospitalAllVO">
+        <result column="hospital_name" property="hospitalName"/>   
+    </resultMap>
+    <!--============================================================================-->
+    <select id="selectAllData" resultMap="AllDataList">
+        SELECT * FROM hospital_all
+    </select>
+    
+    <resultMap id="AllDataList" type="de.gov.vo.HospitalAllVO">
+        <result column="hospital_name" property="hospitalName"/>
+    </resultMap>
+    
+</mapper>

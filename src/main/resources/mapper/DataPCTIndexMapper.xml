@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="de.gov.dao.DataPCTIndexDAO">
+
+	<!-- int insert(DataPCTIndex dataPCTIndex); -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO data_pct_index
+		(numerator,denominator,div_index,national_index,hospital_id,hosp_item_id,annual_quarter_id)
+		VALUES (
+		#{numerator},#{denominator},#{divIndex},#{nationalIndex},#{hospitalId},#{hospItemId},#{annualQuarterId}
+		)
+	</insert>
+
+
+</mapper>

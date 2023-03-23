@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="de.gov.dao.AnnualQuarterDAO">
+
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO annual_quarter
+		(annual,quarter)
+		VALUES 
+		(#{annual},#{quarter})
+	</insert>
+	
+	<!-- List<AnnualQuarter> select(AnnualQuarter annualQuarter); -->
+	<select id="select" resultMap="List">
+		SELECT id,annual,quarter from annual_quarter WHERE annual = #{annual} and TRIM(quarter) =
+		#{quarter}
+	</select>
+	<resultMap id="List" type="de.gov.vo.AnnualQuarterVO">
+		<id column="id" property="id" />
+		<result column="annual" property="annual" />
+		<result column="quarter" property="quarter" />
+	</resultMap>
+	
+	
+	
+	<select id="selectAnnualQuarter" resultMap="AnnualQuarterList">
+		select * from annual_quarter
+	</select>
+	<resultMap id="AnnualQuarterList" type="de.gov.vo.AnnualQuarterVO">
+		<id column="id" property="id" />
+		<result column="annual" property="annual" />
+		<result column="quarter" property="quarter" />
+	</resultMap>
+</mapper>
+
